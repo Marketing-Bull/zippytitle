@@ -17,7 +17,7 @@ wrangler.jsonc
    - `CONTACT_FROM` must be on a domain verified in Resend.
 4. Settings > Domains & Routes > add `zippytitle.com` and `www.zippytitle.com`. The domain's DNS must be on Cloudflare; the records are created for you.
 
-Every push to `main` redeploys.
+Every push to `main` redeploys (Cloudflare Workers Builds, deploy command `npx wrangler deploy`). Build logs are under Workers & Pages > `zippytitle` > Deployments.
 
 ## Deploy (CLI)
 
