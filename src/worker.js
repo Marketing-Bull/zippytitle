@@ -1,7 +1,8 @@
-// Cloudflare Pages Function: POST /api/contact
-// Sends the contact form to ZippyTitle by email using Resend (https://resend.com).
+// Cloudflare Worker: serves /public as static assets (handled by the platform)
+// and handles POST /api/contact, which emails the contact form via Resend
+// (https://resend.com).
 //
-// Required environment variables (Pages > Settings > Variables and Secrets):
+// Required variables (Workers > zippytitle > Settings > Variables and Secrets):
 //   RESEND_API_KEY  (secret)  API key from Resend
 //   CONTACT_TO                inbox that receives enquiries, e.g. hello@zippytitle.com
 //   CONTACT_FROM              verified sender, e.g. "ZippyTitle <noreply@zippytitle.com>"
@@ -12,7 +13,9 @@ const json = (body, status = 200) =>
 const esc = (s) =>
   s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
-export async function onRequestPost({ request, env }) {
+async function handleContact(request, env) {
+  if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
+
   let data;
   try {
     data = await request.json();
@@ -62,4 +65,11 @@ export async function onRequestPost({ request, env }) {
   return json({ ok: true });
 }
 
-export const onRequest = () => json({ error: 'Method not allowed.' }, 405);
+export default {
+  async fetch(request, env) {
+    const { pathname } = new URL(request.url);
+    if (pathname === '/api/contact') return handleContact(request, env);
+    // Only /api/* reaches the Worker (see run_worker_first); anything else is a safety net.
+    return env.ASSETS.fetch(request);
+  },
+};
