@@ -12,8 +12,8 @@ wrangler.jsonc
 
 1. Cloudflare dashboard > Workers & Pages > Create > Import a repository, pick this repo.
 2. Project name `zippytitle`. Build command: *(empty)*. Deploy command: `npx wrangler deploy`.
-3. Settings > Variables and Secrets, for the contact form:
-   - `RESEND_API_KEY` (secret), `CONTACT_TO`, `CONTACT_FROM`
+3. The contact form sends via Resend. `CONTACT_TO` and `CONTACT_FROM` live in `wrangler.jsonc`; add the secret in Settings > Variables and Secrets:
+   - `RESEND_API_KEY` (secret)
    - `CONTACT_FROM` must be on a domain verified in Resend.
 4. Settings > Domains & Routes > add `zippytitle.com` and `www.zippytitle.com`. The domain's DNS must be on Cloudflare; the records are created for you.
 
@@ -28,7 +28,7 @@ npx wrangler deploy
 npx wrangler secret put RESEND_API_KEY
 ```
 
-Set `CONTACT_TO` and `CONTACT_FROM` as plain variables in the dashboard (or add them under `vars` in `wrangler.jsonc`).
+`CONTACT_TO` and `CONTACT_FROM` are set under `vars` in `wrangler.jsonc`, so every deploy keeps them.
 
 ## Local dev
 
