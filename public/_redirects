@@ -1,0 +1,7 @@
+# Old WordPress URLs
+/services /#services 301
+/services/ /#services 301
+/sample-page / 301
+/sample-page/ / 301
+/feed / 301
+/feed/ / 301
