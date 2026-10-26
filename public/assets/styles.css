@@ -115,7 +115,10 @@ textarea { min-height: 130px; resize: vertical; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 22px; }
 .site-footer a { text-decoration: none; }
 .site-footer a:hover { color: #fff; }
-.footer-bottom { padding-top: 24px; }
+.footer-sites { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding-top: 24px; }
+.footer-sites span { color: #fff; font-weight: 600; }
+.footer-bottom { padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+.credit a { color: #fff; }
 
 /* Legal / 404 */
 .page { padding: 72px 0 96px; max-width: 760px; }

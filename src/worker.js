@@ -1,5 +1,6 @@
 // Cloudflare Worker: serves /public as static assets (handled by the platform)
-// and handles POST /api/contact, which emails the contact form using Resend (https://resend.com).
+// and handles POST /api/contact, which emails the contact form via Resend
+// (https://resend.com).
 //
 // Required variables (Workers > zippytitle > Settings > Variables and Secrets):
 //   RESEND_API_KEY  (secret)  API key from Resend
@@ -13,6 +14,8 @@ const esc = (s) =>
   s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
 async function handleContact(request, env) {
+  if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
+
   let data;
   try {
     data = await request.json();
@@ -65,9 +68,7 @@ async function handleContact(request, env) {
 export default {
   async fetch(request, env) {
     const { pathname } = new URL(request.url);
-    if (pathname === '/api/contact') {
-      return request.method === 'POST' ? handleContact(request, env) : json({ error: 'Method not allowed.' }, 405);
-    }
+    if (pathname === '/api/contact') return handleContact(request, env);
     // Only /api/* reaches the Worker (see run_worker_first); anything else is a safety net.
     return env.ASSETS.fetch(request);
   },

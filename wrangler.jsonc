@@ -5,7 +5,7 @@
   "observability": {
     "enabled": true
   },
-  // Contact form (see src/worker.js). RESEND_API_KEY is a secret: set it in the dashboard.
+  // Not secret. RESEND_API_KEY is a secret and is set in the dashboard.
   "vars": {
     "CONTACT_TO": "leads@getmarketingbull.com",
     "CONTACT_FROM": "ZippyTitle <noreply@getmarketingbull.com>"
