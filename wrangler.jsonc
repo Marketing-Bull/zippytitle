@@ -2,10 +2,13 @@
   "name": "zippytitle",
   "main": "src/worker.js",
   "compatibility_date": "2025-01-01",
+  "observability": {
+    "enabled": true
+  },
   // Not secret. RESEND_API_KEY is a secret and is set in the dashboard.
   "vars": {
     "CONTACT_TO": "leads@getmarketingbull.com",
-    "CONTACT_FROM": "ZippyTitle <noreply@zippytitle.com>"
+    "CONTACT_FROM": "ZippyTitle <noreply@getmarketingbull.com>"
   },
   "assets": {
     "directory": "./public",

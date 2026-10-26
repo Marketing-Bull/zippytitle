@@ -34,6 +34,6 @@ npx wrangler secret put RESEND_API_KEY
 
 ```
 npm install
-printf 'RESEND_API_KEY=...\nCONTACT_TO=you@example.com\nCONTACT_FROM=ZippyTitle <noreply@zippytitle.com>\n' > .dev.vars
+printf 'RESEND_API_KEY=...\nCONTACT_TO=you@example.com\nCONTACT_FROM=ZippyTitle <noreply@getmarketingbull.com>\n' > .dev.vars
 npm run dev
 ```

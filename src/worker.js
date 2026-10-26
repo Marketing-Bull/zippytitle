@@ -4,8 +4,8 @@
 //
 // Required variables (Workers > zippytitle > Settings > Variables and Secrets):
 //   RESEND_API_KEY  (secret)  API key from Resend
-//   CONTACT_TO                inbox that receives enquiries, e.g. hello@zippytitle.com
-//   CONTACT_FROM              verified sender, e.g. "ZippyTitle <noreply@zippytitle.com>"
+//   CONTACT_TO                inbox that receives enquiries, e.g. leads@getmarketingbull.com
+//   CONTACT_FROM              verified sender, e.g. "ZippyTitle <noreply@getmarketingbull.com>"
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
