@@ -13,7 +13,7 @@ wrangler.toml
 1. Cloudflare dashboard > Workers & Pages > Create > Pages > Connect to Git, pick this repo.
 2. Framework preset: **None**. Build command: *(empty)*. Build output directory: `public`.
 3. Settings > Variables and Secrets (Production), for the contact form:
-   - `RESEND_API_KEY` (secret), `CONTACT_TO`, `CONTACT_FROM`
+   - `RESEND_API_KEY` (secret). `CONTACT_TO` and `CONTACT_FROM` are already set in `wrangler.toml`.
    - `CONTACT_FROM` must be on a domain verified in Resend.
 4. Custom domains > add `zippytitle.com` and `www.zippytitle.com`. If the domain's DNS is on Cloudflare, records are created automatically.
 
@@ -28,6 +28,6 @@ npx wrangler pages deploy
 
 ```
 npm install
-printf 'RESEND_API_KEY=...\nCONTACT_TO=you@example.com\nCONTACT_FROM=ZippyTitle <noreply@zippytitle.com>\n' > .dev.vars
+printf 'RESEND_API_KEY=...\nCONTACT_TO=you@example.com\nCONTACT_FROM=ZippyTitle <noreply@getmarketingbull.com>\n' > .dev.vars
 npm run dev
 ```

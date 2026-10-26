@@ -1,3 +1,7 @@
 name = "zippytitle"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "./public"
+
+[vars]
+CONTACT_TO = "leads@getmarketingbull.com"
+CONTACT_FROM = "ZippyTitle <noreply@getmarketingbull.com>"
