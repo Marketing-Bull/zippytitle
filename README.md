@@ -24,7 +24,7 @@ Every push to `main` redeploys. Pushes to other branches only upload a preview v
 ```
 npm install
 npx wrangler deploy
-npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put RESEND_API_KEY   # or set it in the dashboard
 ```
 
 ## Local dev
