@@ -33,11 +33,14 @@ if (form) {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
       form.reset();
+      window.turnstile?.reset(form.querySelector('.cf-turnstile'));
       status.className = 'form-status ok';
       status.textContent = "Thanks! We've got your message and will be in touch shortly.";
     } catch (err) {
       status.className = 'form-status err';
       status.textContent = err.message;
+      // Turnstile tokens are single-use, so get a fresh one for the next try.
+      window.turnstile?.reset(form.querySelector('.cf-turnstile'));
     } finally {
       button.disabled = false;
     }
