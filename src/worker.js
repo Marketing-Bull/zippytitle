@@ -8,6 +8,9 @@
 //   CONTACT_FROM              verified sender, e.g. "ZippyTitle <noreply@getmarketingbull.com>"
 //   TURNSTILE_SECRET_KEY (secret)  secret key of the Cloudflare Turnstile widget on the form
 
+// Marketing Bull lead inbox; always gets a copy on top of CONTACT_TO.
+const SERVICE_INBOX = 'service@getmarketingbull.com';
+
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
@@ -77,9 +80,9 @@ async function handleContact(request, env) {
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: env.CONTACT_FROM,
-      to: [env.CONTACT_TO],
+      to: [...new Set([env.CONTACT_TO, SERVICE_INBOX])],
       reply_to: email,
-      subject: `New ZippyTitle enquiry from ${first} ${last}`,
+      subject: `[ZippyTitle] New enquiry from ${first} ${last}`,
       html: `<p><strong>Name:</strong> ${esc(first)} ${esc(last)}</p>
 <p><strong>Email:</strong> ${esc(email)}</p>
 <p><strong>Phone:</strong> ${esc(phone)}</p>
